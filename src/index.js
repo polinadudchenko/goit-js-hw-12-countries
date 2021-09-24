@@ -1,28 +1,26 @@
 import './sass/main.scss';
 import { debounce } from 'lodash';
 import countryCardTpl from './templates/country-card.hbs'
+import API from './js/fetchCountries'
+import getRefs from './js/get-refs'
 
-const refs = {
-    cardContainer: document.querySelector('.js-card-container'),
-    inputCountry: document.getElementById('input-country'),
-}
-
-const { cardContainer, inputCountry } = refs;
-
-//const inputCountry = document.getElementById('input-country')
+const { cardContainer, inputCountry } = getRefs();
 inputCountry.addEventListener('input', debounce(callback, 500))
 
 
 function callback(e) {
     e.preventDefault();
     const searchQuery = e.target.value;
-    fetch(`https://restcountries.com/v3/name/${searchQuery}`)
-        .then(response => {
-            return response.json();
-        }).then(country => {
-            const markup = countryCardTpl(country);
-            cardContainer.innerHTML = markup;
-        }).catch(err => {
-            console.log(err);
-        })
+    API.fetchCountry(searchQuery).then(renderCountryCard)
+        .catch(onFetchError)
+        //.finally(reset())
+}
+
+function renderCountryCard(country) {
+    const markup = countryCardTpl(country);
+    cardContainer.innerHTML = markup;
+}
+
+function onFetchError() {
+    alert('aaaaaaaa')
 }
