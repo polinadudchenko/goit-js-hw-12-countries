@@ -1,0 +1,13 @@
+<div class="country">
+    <h1 class="country__name">{{name.common}}</h1>
+    <p class="country__capital">Capital: {{capital}}</p>
+    <p class="country__region">Region: {{region}}</p>
+    <img src="{{flags}}" alt="{{name.common}}" class="country__flag">
+    <p class="country__language">Languages: </p>
+        <ul class="languages">
+            {{#each languages}}
+                <li class="language">{{this}}</li>
+            {{/each}}
+        </ul>
+    
+</div>
