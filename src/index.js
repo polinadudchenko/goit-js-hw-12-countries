@@ -8,21 +8,25 @@ import {error, alert, defaultModules } from '@pnotify/core/dist/PNotify.js';
 import * as PNotifyMobile from '@pnotify/mobile/dist/PNotifyMobile.js';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
+import '@pnotify/core/dist/BrightTheme.css';
 defaultModules.set(PNotifyMobile, {});
 
 const { cardContainer, inputCountry } = getRefs();
-inputCountry.addEventListener('input', debounce(callback, 500))
+inputCountry.addEventListener('input', debounce(callback, 1000))
 
 
 function callback(e) {
     e.preventDefault();
     const searchQuery = e.target.value.trim();
-    API.fetchCountry(searchQuery).then(renderCountryCard).catch(onFetchError).finally(clearInput)
+    if (!searchQuery) {
+        alert({ text: 'Please, enter a country name' })
+        return
+    }
+    API.fetchCountry(searchQuery).then(renderCountryCard).catch(onFetchError)
 }
 
 function renderCountryCard(country) {
     let markup;
-    console.log(country);
     if (country.length == 1) {
         markup = countryCardTpl(country);
         cardContainer.innerHTML = markup;

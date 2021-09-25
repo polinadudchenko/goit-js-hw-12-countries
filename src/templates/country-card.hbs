@@ -1,15 +1,15 @@
 <div class="country">
     <div class="country__info">
-    <h1 class="country__name">{{0.name.common}}</h1>
-    <p class="country__capital">Capital: {{0.capital}}</p>
-    <p class="country__area">Area: {{0.area}}</p>
-    <p class="country__language">Languages: </p>
+        <h1 class="country__name">{{0.name.common}}</h1>
+        <p class="country__capital"><b>Capital:</b> {{0.capital}}</p>
+        <p class="country__area"><b>Area:</b> {{0.area}}</p>
+        <p class="country__language"><b>Languages:</b> </p>
         <ul class="languages">
             {{#each 0.languages}}
                 <li class="language">{{this}}</li>
             {{/each}}
         </ul>
-        </div>
+    </div>
     <img src="{{0.flags.[0]}}" alt="{{0.name.common}}" class="country__flag" width="320">
     
 </div>
