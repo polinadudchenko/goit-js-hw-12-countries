@@ -12,7 +12,7 @@ import '@pnotify/core/dist/BrightTheme.css';
 defaultModules.set(PNotifyMobile, {});
 
 const { cardContainer, inputCountry } = getRefs();
-inputCountry.addEventListener('input', debounce(callback, 500))
+inputCountry.addEventListener('input', debounce(callback, 600))
 
 
 function callback(e) {
