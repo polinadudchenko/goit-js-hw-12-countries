@@ -23,7 +23,7 @@ function callback(e) {
         alert({ text: 'Please, enter a country name' })
         return
     }
-    API.fetchCountry(searchQuery).then(renderCountryCard).catch(onFetchError).finally(debounce(clearInput, 500))
+    API.fetchCountry(searchQuery).then(renderCountryCard).catch(onFetchError).finally(debounce(clearInput, 2000))
 }
 
 function renderCountryCard(country) {
